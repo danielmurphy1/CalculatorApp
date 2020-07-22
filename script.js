@@ -9,34 +9,70 @@ btn.addEventListener("click", function () {
 let replace = false;
 function replaceDisplay(){
     replace = !replace;
-    if(replace){
+    if(replace === true){
         document.addEventListener("keydown", function(e){
             display.value = ""+ e.target.value;
         })
+        const numberBtns = document.querySelectorAll(".number-button");
+        numberBtns.forEach(function(numButton){
+        numButton.addEventListener("click", function(e){
+            //  if(e.target.textContent === "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0"){
+            display.value = ""+ e.target.textContent;
+            //  } else {
+            //      display.value = display.value;
+            //  }
+            })
+        })    
+
+        
     }
 }
 
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", function () {
-  document.getElementById("display").valueAsNumber = 0;
-  replaceDisplay();
+  display.value = parseFloat(0);
+  //replaceDisplay();
+  operator = null;
+  num1 = null;
+  num2 = null;
 });
 
 document.addEventListener("keydown", function () {
   document.getElementById("display").focus();
 });
-
-
+let num1 = null;
+let num2 = null;
+let operator = null;
 const operatorBtns = document.querySelectorAll(".operator-button");
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", function (e) {
-    num1 = display.valueAsNumber;
+    if (operator) {
+      
+        calculate();
+        num1 = parseFloat(display.value);
+        return operator = button.textContent;
+     
+    }
+    num1 = parseFloat(display.value);
     replaceDisplay();
-    
     return operator = button.textContent;
-  });
-  
+  }); 
 });
+
+
+const numberBtns = document.querySelectorAll(".number-button");
+ numberBtns.forEach(function (numButton){
+    numButton.addEventListener("click", function(e){
+        if(display.value === "0"){
+            display.value = e.target.textContent;
+        } else {
+            display.value = display.value + e.target.textContent;
+            //replaceDisplay();
+        }
+        
+    })
+   
+})
 
 const equalBtn = document.getElementById("equal-button");
 equalBtn.addEventListener("click", calculate);
@@ -44,30 +80,43 @@ equalBtn.addEventListener("click", calculate);
 
 
 function calculate() {
-  num2 = display.valueAsNumber;
+  num2 = parseFloat(display.value);
+  let result = "";
   switch (operator) {
     case "+":
-      const sum = num1 + num2;
-      display.value = sum;
+    result = num1 + num2;
+      display.value = result;
       replaceDisplay();
-      break;
+      operator = null;
+      num2 = null;
+      return result;
     case "-":
-      const difference = num1 - num2;
-      display.value = difference;
-      replaceDisplay();
-      break;
+       result = num1 - num2;
+       display.value = result;
+       replaceDisplay();
+       operator = null;
+       num2 = null;
+       return result;
+     
     case "/":
-      const quotient = num1 / num2;
-      display.value = quotient;
-      replaceDisplay();
-      break;
+       result = num1 / num2;
+       if( num2 === 0){
+        alert("Cannot divide by 0!");
+           return;
+       }
+       display.value = result;
+       replaceDisplay();
+       operator = null;
+       num2 = null;
+       return result;
+      
     case "x":
-      const product = num1 * num2;
-      display.value = product;
-      replaceDisplay();
-      break;
+        display.value = result;
+        replaceDisplay();
+        operator = null;
+        num2 = null;
+        return result;
+      
   }
 };
-
-
-//need to add conitnuous functionality (summing after each operator press)
+//need to fix being able to click more than 1 digit numbers after operator
