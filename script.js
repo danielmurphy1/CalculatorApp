@@ -12,19 +12,18 @@ function replaceDisplay(){
     if(replace === true){
         document.addEventListener("keydown", function(e){
             display.value = ""+ e.target.value;
-        })
-        const numberBtns = document.querySelectorAll(".number-button");
-        numberBtns.forEach(function(numButton){
-        numButton.addEventListener("click", function(e){
-            //  if(e.target.textContent === "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0"){
-            display.value = ""+ e.target.textContent;
-            //  } else {
-            //      display.value = display.value;
-            //  }
-            })
-        })    
-
-        
+        });
+        // const numberBtns = document.querySelectorAll(".number-button");
+        // numberBtns.forEach(function(numButton){
+        //     numButton.addEventListener("click", function(e){
+        //         if(e.target.textContent === "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0"){
+        //         display.value = parseFloat(display.value + e.target.textContent);
+        //         //  } else {
+        //         //      display.value = display.value;
+        //         //  }
+        //         }
+        //     })    
+        // })
     }
 }
 
@@ -46,6 +45,7 @@ let operator = null;
 const operatorBtns = document.querySelectorAll(".operator-button");
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", function (e) {
+      //display.value = "";
     if (operator) {
       
         calculate();
@@ -64,9 +64,11 @@ const numberBtns = document.querySelectorAll(".number-button");
  numberBtns.forEach(function (numButton){
     numButton.addEventListener("click", function(e){
         if(display.value === "0"){
-            display.value = e.target.textContent;
+            display.value = parseFloat(e.target.textContent);
         } else {
-            display.value = display.value + e.target.textContent;
+            let tempNumber = display.value;
+            display.value = null;
+            display.value = parseFloat(tempNumber + e.target.textContent);
             //replaceDisplay();
         }
         
@@ -119,4 +121,4 @@ function calculate() {
       
   }
 };
-//need to fix being able to click more than 1 digit numbers after operator
+//need to fix display not clearing after operator button click on next number click
