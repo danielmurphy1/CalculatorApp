@@ -7,34 +7,60 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <div id="container">
-        <div id="display">0</div>
-        <!-- <input type="number"  id="display" value="0" step="0.001"> -->
-       
-        <button id="clear">Clear</button>
-        <button id="add-button" class="operator-button" type="submit">+</button>
-        <button id="subtract-button" class="operator-button">-</button>
-        <button id="divide-button" class="operator-button">/</button>
-        <button id="multiply-button" class="operator-button">x</button>
-        <button id="equal-button">=</button>
+    <header>
+        <h1>Digital Calculator</h1>
+    </header>
+    <main>
+        <div id="calculator">
+            <div id="display">0</div>
+            <!-- <input type="number"  id="display" value="0" step="0.001"> -->
+            <div id="row1">
+                
+                <button id="memory-add">M+</button>
+                <button id="memory-clear">M-</button>
+                <button id="memory-call">MR</button>
+                <button id="add-button" class="operator-button">+</button>
+            </div>
+            <div id="row2">
+                <button class="number-button">7</button>
+                <button class="number-button">8</button>
+                <button class="number-button">9</button>
+                <button id="divide-button" class="operator-button">/</button>
+            </div>
+            <div id="row3">
+                <button class="number-button">4</button>
+                <button class="number-button">5</button>
+                <button class="number-button">6</button>
+                <button id="multiply-button" class="operator-button">x</button>
+            </div>
+            <div id="row4">
+                <button class="number-button">1</button>
+                <button class="number-button">2</button>
+                <button class="number-button">3</button>
+                <button id="subtract-button" class="operator-button">-</button>
+            </div>
+            <div id="row5">
+                <button id="clear">Clear</button>  
+                <button id="decimal">.</button>
+                <button class="number-button">0</button>
+                <button id="equal-button">=</button>
+            </div>
+            
+            
+           
+            
+            
+            
 
-        <div id="number-buttons">
-            <button class="number-button">1</button>
-            <button class="number-button">2</button>
-            <button class="number-button">3</button>
-            <button class="number-button">4</button>
-            <button class="number-button">5</button>
-            <button class="number-button">6</button>
-            <button class="number-button">7</button>
-            <button class="number-button">8</button>
-            <button class="number-button">9</button>
-            <button class="number-button">0</button>
-            <button id="decimal">.</button>
+            <div id="number-buttons">
+                
+               
+                
+                
+                
+            
         </div>
-        <button id="memory-add">M+</button>
-        <button id="memory-clear">M-</button>
-        <button id="memory-call">MR</button>
-    </div>
+    </main>
 
    
 

@@ -1,11 +1,38 @@
-#container{
+html, body{
+    width: auto;
+    height: 100%;
+}
+
+header{
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+main{
+    height: 100%;
+}
+
+#calculator{
     border: 1px solid black;
-    margin: auto;
-    width: 50%;
+    margin: 50px auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}
+
+button{
+width: 20%;
+border-radius: 500px;
+font-size: 20px;
+height: 50px;
 }
 
 
-/* #display{
+ #display{
     text-align: right;
-    
-}   */
+    height: 100px;
+    background-color: black;
+    color: white;
+    font-size: 80px;
+}   
