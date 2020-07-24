@@ -7,28 +7,35 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <input type="number"  id="display" value="0">
-    <button id="button">Click</button>
-    <button id="clear">Clear</button>
-    <button id="add-button" class="operator-button" type="submit">+</button>
-    <button id="subtract-button" class="operator-button">-</button>
-    <button id="divide-button" class="operator-button">/</button>
-    <button id="multiply-button" class="operator-button">x</button>
-    <button id="equal-button">=</button>
+    <div id="container">
+        <div id="display">0</div>
+        <!-- <input type="number"  id="display" value="0" step="0.001"> -->
+       
+        <button id="clear">Clear</button>
+        <button id="add-button" class="operator-button" type="submit">+</button>
+        <button id="subtract-button" class="operator-button">-</button>
+        <button id="divide-button" class="operator-button">/</button>
+        <button id="multiply-button" class="operator-button">x</button>
+        <button id="equal-button">=</button>
 
-    <div id="number-buttons">
-        <button class="number-button">1</button>
-        <button class="number-button">2</button>
-        <button class="number-button">3</button>
-        <button class="number-button">4</button>
-        <button class="number-button">5</button>
-        <button class="number-button">6</button>
-        <button class="number-button">7</button>
-        <button class="number-button">8</button>
-        <button class="number-button">9</button>
-        <button class="number-button">0</button>
-
+        <div id="number-buttons">
+            <button class="number-button">1</button>
+            <button class="number-button">2</button>
+            <button class="number-button">3</button>
+            <button class="number-button">4</button>
+            <button class="number-button">5</button>
+            <button class="number-button">6</button>
+            <button class="number-button">7</button>
+            <button class="number-button">8</button>
+            <button class="number-button">9</button>
+            <button class="number-button">0</button>
+            <button id="decimal">.</button>
+        </div>
+        <button id="memory-add">M+</button>
+        <button id="memory-clear">M-</button>
+        <button id="memory-call">MR</button>
     </div>
+
    
 
 <script src="script.js"></script>    
