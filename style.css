@@ -1,11 +1,14 @@
 html, body{
     width: auto;
     height: 100%;
+    background-color: sienna
 }
 
 header{
     text-align: center;
     border-bottom: 1px solid black;
+    font-size: 1.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 main{
@@ -19,6 +22,20 @@ main{
     display: flex;
     flex-direction: column;
     background-color: grey;
+    height: 80%;
+    border-radius: 20px;
+}
+
+#buttons-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
 }
 
 button{
@@ -28,11 +45,22 @@ font-size: 20px;
 height: 50px;
 }
 
+.number-button{
+    background-color: #00000087;
+    color: white;
+}
 
- #display{
+.operator-button{
+    background-color: #8b00009c;
+    color: black;
+}
+
+
+#display{
     text-align: right;
     height: 100px;
     background-color: black;
     color: white;
     font-size: 80px;
+    border-radius: 20px;
 }   
