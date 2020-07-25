@@ -1,3 +1,4 @@
+
 const display = document.getElementById("display");
 let replace = false;
 let num1 = null;
@@ -7,16 +8,26 @@ let memory = null;
 
 const decimal = document.getElementById("decimal");
 decimal.addEventListener("click", function (e) {
-  if (replace) {
-    display.textContent = null;
-    replace = false;
-  }
-  if (display.textContent.includes(".")) {
-    return display.textContent;
-  } else {
-    display.textContent = display.textContent + e.target.textContent;
-  }
+    addDecimalPoint(e.target.textContent);
 });
+
+document.addEventListener("keydown", function(e){
+    if (e.keyCode === 110){
+        addDecimalPoint(e.key);
+    }
+});
+
+function addDecimalPoint(decimalTarget){
+    if (replace) {
+        display.textContent = null;
+        replace = false;
+      }
+      if (display.textContent.includes(".")) {
+        return display.textContent;
+      } else {
+        display.textContent = display.textContent + decimalTarget;
+      }
+}
 
 const memAdd = document.getElementById("memory-add");
 memAdd.addEventListener("click", function () {
@@ -59,24 +70,8 @@ operatorBtns.forEach(function (button) {
   });
 });
 
-document.addEventListener("keydown", function (e) {
-    if(e.keyCode >= 96 && e.keyCode<= 105){
-        console.log("working");
-        if (replace) {
-            display.textContent = null;
-            replace = false;
-        }
-        if (display.textContent === "0") {
-            display.textContent = parseFloat(e.key);
-        } else {
-            let tempNumber = display.textContent;
-            display.textContent = null;
-            display.textContent = parseFloat(tempNumber + e.key);
-        }
-        }else{
-            return;
-        }
-})
+
+
 document.addEventListener("keydown", function (e) {
   if (
     e.keyCode === 106 ||
@@ -87,28 +82,19 @@ document.addEventListener("keydown", function (e) {
     if (operator) {
       calculate();
       num1 = parseFloat(display.textContent);
-
-      switch (e.keyCode) {
-        case 107:
-          operator = "+";
-          return operator;
-        case 109:
-          operator = "-";
-          return operator;
-
-        case 111:
-          operator = "/";
-          return operator;
-
-        case 106:
-          operator = "*";
-          return operator;
-          default:
-      }
+      keypadOperatorSelect(e);
     }else {
    
     num1 = parseFloat(display.textContent);
     replace = true;
+    keypadOperatorSelect(e);
+  }
+} else{
+    return;
+}
+})
+
+function keypadOperatorSelect(e){
     switch (e.keyCode) {
         case 107:
           operator = "+";
@@ -126,28 +112,36 @@ document.addEventListener("keydown", function (e) {
           return operator;
           default:
       }
-  }
-} else{
-    return;
 }
-})
 
 const numberBtns = document.querySelectorAll(".number-button");
 numberBtns.forEach(function (numButton) {
   numButton.addEventListener("click", function (e) {
-    if (replace) {
-      display.textContent = null;
-      replace = false;
-    }
-    if (display.textContent === "0") {
-      display.textContent = parseFloat(e.target.textContent);
-    } else {
-      let tempNumber = display.textContent;
-      display.textContent = null;
-      display.textContent = parseFloat(tempNumber + e.target.textContent);
-    }
+    AddNumberButton(e.target.textContent);
   });
 });
+
+document.addEventListener("keydown", function (e) {
+    if(e.keyCode >= 96 && e.keyCode<= 105){
+        AddNumberButton(e.key);
+        }else{
+            return;
+        }
+})
+
+function AddNumberButton (numberTarget){
+    if (replace) {
+        display.textContent = null;
+        replace = false;
+      }
+      if (display.textContent === "0") {
+        display.textContent = parseFloat(numberTarget);
+      } else {
+        let tempNumber = display.textContent;
+        display.textContent = null;
+        display.textContent = parseFloat(tempNumber + numberTarget);
+      }
+}
 
 document.addEventListener("keydown", function(e){
    
@@ -204,4 +198,4 @@ function calculate() {
   }
 }
 
-//need to add . button on keypad functionality
+//bug entering "0" after decimal point. Need to fix.
