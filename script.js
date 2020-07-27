@@ -1,4 +1,3 @@
-
 const display = document.getElementById("display");
 let replace = false;
 let num1 = null;
@@ -6,17 +5,16 @@ let num2 = null;
 let operator = null;
 let memory = null;
 
+//decimal point functionality
 const decimal = document.getElementById("decimal");
 decimal.addEventListener("click", function (e) {
     addDecimalPoint(e.target.textContent);
 });
-
 document.addEventListener("keydown", function(e){
     if (e.keyCode === 110){
         addDecimalPoint(e.key);
     }
 });
-
 function addDecimalPoint(decimalTarget){
     if (replace) {
         display.textContent = null;
@@ -29,16 +27,15 @@ function addDecimalPoint(decimalTarget){
       }
 }
 
+//memory buttons functionality
 const memAdd = document.getElementById("memory-add");
 memAdd.addEventListener("click", function () {
   memory = display.textContent;
 });
-
 const memClear = document.getElementById("memory-clear");
 memClear.addEventListener("click", function () {
   memory = null;
 });
-
 const memCall = document.getElementById("memory-call");
 memCall.addEventListener("click", function () {
   if (memory) {
@@ -47,6 +44,7 @@ memCall.addEventListener("click", function () {
   return display.textContent;
 });
 
+//cear button functionality
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", function () {
   display.textContent = parseFloat(0);
@@ -56,6 +54,7 @@ clearBtn.addEventListener("click", function () {
   num2 = null;
 });
 
+//operators functionality
 const operatorBtns = document.querySelectorAll(".operator-button");
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", function (e) {
@@ -69,9 +68,6 @@ operatorBtns.forEach(function (button) {
     return (operator = button.textContent);
   });
 });
-
-
-
 document.addEventListener("keydown", function (e) {
   if (
     e.keyCode === 106 ||
@@ -93,7 +89,6 @@ document.addEventListener("keydown", function (e) {
     return;
 }
 })
-
 function keypadOperatorSelect(e){
     switch (e.keyCode) {
         case 107:
@@ -114,88 +109,79 @@ function keypadOperatorSelect(e){
       }
 }
 
+//numbers functionality
 const numberBtns = document.querySelectorAll(".number-button");
 numberBtns.forEach(function (numButton) {
   numButton.addEventListener("click", function (e) {
-    AddNumberButton(e.target.textContent);
+    addNumberButton(e.target.textContent);
   });
 });
-
 document.addEventListener("keydown", function (e) {
     if(e.keyCode >= 96 && e.keyCode<= 105){
-        AddNumberButton(e.key);
+        addNumberButton(e.key);
         }else{
             return;
         }
 })
-
-function AddNumberButton (numberTarget){
+function addNumberButton (numberTarget){
     if (replace) {
         display.textContent = null;
         replace = false;
       }
       if (display.textContent === "0") {
-        display.textContent = parseFloat(numberTarget);
+        display.textContent = numberTarget;
       } else {
-        let tempNumber = display.textContent;
-        display.textContent = null;
-        display.textContent = parseFloat(tempNumber + numberTarget);
+        display.textContent = (display.textContent + numberTarget);
       }
 }
 
-document.addEventListener("keydown", function(e){
-   
-    if(e.keyCode === 13){
-        e.preventDefault();
-        calculate();
-    } else{
-        return;
-    }
-})
-
+//equals functionality
 const equalBtn = document.getElementById("equal-button");
 equalBtn.addEventListener("click", calculate);
-
+document.addEventListener("keydown", function(e){
+  if(e.keyCode === 13){
+      e.preventDefault();
+      calculate();
+  } else{
+      return;
+  }
+})
 function calculate() {
   num2 = parseFloat(display.textContent);
   let result = "";
   switch (operator) {
     case "+":
       result = num1 + num2;
-      display.textContent = Number.parseFloat(result).toPrecision(3) / 1;
+      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
       replace = true;
       operator = null;
       num2 = null;
       return result;
     case "-":
       result = num1 - num2;
-      display.textContent = Number.parseFloat(result).toPrecision(3) / 1;
+      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
       replace = true;
       operator = null;
       num2 = null;
       return result;
-
     case "/":
       result = num1 / num2;
       if (num2 === 0) {
-        alert("Cannot divide by 0!");
+        alert("Cannot divide by 0! Are you trying to create a black hole?");
         return;
       }
-      display.textContent = Number.parseFloat(result).toPrecision(3) / 1;
+      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
       replace = true;
       operator = null;
       num2 = null;
       return result;
-
     case "x":
     case "*":
       result = num1 * num2;
-      display.textContent = Number.parseFloat(result).toPrecision(3) / 1;
+      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
       replace = true;
       operator = null;
       num2 = null;
       return result;
   }
 }
-
-//bug entering "0" after decimal point. Need to fix.
