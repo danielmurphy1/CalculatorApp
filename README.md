@@ -10,7 +10,7 @@ This calculator contains both on-screen clickable button funcitonality and keybo
 
 Access the app [here](https://danielmurphy1.github.io/CalculatorApp/)
 
-![ExpenseApp Screen](https://github.com/danielmurphy1/ExpenseTracker/blob/master/CalculatorImage.JPG)
+![CalculatorApp Screen](https://github.com/danielmurphy1/CalculatorApp/blob/master/CalculatorImage.JPG)
 
 ### Summary
 
