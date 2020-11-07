@@ -122,83 +122,63 @@ function calculate() {
   }
 }
 
+function actionWithNoOperator(symbol) {
+  num1 = parseFloat(display.textContent);
+  replace = true;
+  keypadOperatorSelect(symbol);
+}
+
+function actionWithOperator(symbol) {
+  calculate();
+  num1 = parseFloat(display.textContent);
+  keypadOperatorSelect(symbol);
+}
+
 //equals functionality
 equalBtn.addEventListener("click", calculate);
-document.addEventListener("keydown", function(e){
-  if(e.keyCode === 13){
-    e.preventDefault();
-    calculate();
-  } else {
-    return;
-  }
-});
+document.addEventListener("keydown", e => e.keyCode === 13 ? calculate() : null);
 
 //numbers functionality
-numberBtns.forEach(function (numButton) {
+numberBtns.forEach(numButton => {
   numButton.addEventListener("click", function (e) {
     addNumberButton(e.target.textContent);
   });
 });
-document.addEventListener("keydown", function (e) {
-  if(e.keyCode >= 96 && e.keyCode<= 105){
-    addNumberButton(e.key);
-    }else{
-        return;
-  }
-});
+
+document.addEventListener("keydown", e => (e.keyCode >= 96 && e.keyCode<= 105) ? addNumberButton(e.key) : null);
 
 //operators functionality
-operatorBtns.forEach(function (button) {
-  button.addEventListener("click", function (e) {
+operatorBtns.forEach(button => {
+  button.addEventListener("click", e => {
+    const symbol = button.textContent;
     if (operator) {
-      calculate();
-      num1 = parseFloat(display.textContent);
-      return (operator = button.textContent);
+      actionWithOperator(symbol);
+    } else {
+      actionWithNoOperator(symbol);
     }
-    num1 = parseFloat(display.textContent);
-    replace = true;
-    return (operator = button.textContent);
   });
 });
-document.addEventListener("keydown", function (e) {
-  if (
-    e.keyCode === 106 ||
-    e.keyCode === 107 ||
-    e.keyCode === 109 ||
-    e.keyCode === 111
-  ) {
-    if (operator) {
-      calculate();
-      num1 = parseFloat(display.textContent);
-      keypadOperatorSelect(e);
-    }else {
-      num1 = parseFloat(display.textContent);
-      replace = true;
-      keypadOperatorSelect(e);
+
+document.addEventListener("keydown", e => {
+  const symbol = getOperandSymbol(e.keyCode);
+  if(symbol){
+    if(operator){
+      actionWithOperator(symbolk);
+    } else {
+      actionWithNoOperator(symbol);
     }
-  } else {
-    return;
   }
 });
 
 //memory buttons functionality
-memAdd.addEventListener("click", function () {
-  memory = display.textContent;
-});
+memAdd.addEventListener("click", () => memory = display.textContent);
 
-memClear.addEventListener("click", function () {
-  memory = null;
-});
+memClear.addEventListener("click", () => memory = null);
 
-memCall.addEventListener("click", function () {
-  if (memory) {
-    display.textContent = memory;
-  }
-  return display.textContent;
-});
+memCall.addEventListener("click", () => memory ? display.textContent = memory : display.textContent);
 
 //cear button functionality
-clearBtn.addEventListener("click", function () {
+clearBtn.addEventListener("click", () => {
   display.textContent = parseFloat(0);
   replace = false;
   operator = null;
@@ -207,11 +187,6 @@ clearBtn.addEventListener("click", function () {
 });
 
 //decimal point functionality
-decimal.addEventListener("click", function (e) {
-  addDecimalPoint(e.target.textContent);
-});
-document.addEventListener("keydown", function(e){
-  if (e.keyCode === 110){
-      addDecimalPoint(e.key);
-  }
-});
+decimal.addEventListener("click", e =>  addDecimalPoint(e.target.textContent));
+
+document.addEventListener("keydown", e => e.keyCode === 110? addDecimalPoint() : null);
