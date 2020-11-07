@@ -136,7 +136,12 @@ function actionWithOperator(symbol) {
 
 //equals functionality
 equalBtn.addEventListener("click", calculate);
-document.addEventListener("keydown", e => e.keyCode === 13 ? calculate() : null);
+document.addEventListener("keydown", e => { 
+  if(e.keyCode === 13){
+  e.preventDefault();
+  calculate();
+  }
+});
 
 //numbers functionality
 numberBtns.forEach(numButton => {
@@ -163,7 +168,7 @@ document.addEventListener("keydown", e => {
   const symbol = getOperandSymbol(e.keyCode);
   if(symbol){
     if(operator){
-      actionWithOperator(symbolk);
+      actionWithOperator(symbol);
     } else {
       actionWithNoOperator(symbol);
     }
