@@ -13,89 +13,112 @@ let num2 = null;
 let operator = null;
 let memory = null;
 
-function addDecimalPoint(decimalTarget){
+function addDecimalPoint(){
   if (replace) {
     display.textContent = null;
     replace = false;
   }
-  
-  if (display.textContent.includes(".")) {
-    return display.textContent;
-  } else {
-    display.textContent = display.textContent + decimalTarget;
+
+  display.textContent.includes(".") ? display.textContent : display.textContent = display.textContent + ".";
+}
+
+function getOperandSymbol(keycode){
+  switch(keycode){
+    case 106: //multiplication
+      return "*";
+    case 107: //addition
+      return "+";
+    case 109: //subtraction
+      return "-";
+    case 111: //division
+      return "/";
+    default:
+      return;
   }
 }
 
-function keypadOperatorSelect(e){
-  switch (e.keyCode) {
-    case 107:
+function keypadOperatorSelect(symbol){
+  switch (symbol) {
+    case "+":
       operator = "+";
-      return operator;
-    case 109:
+      break;
+    case "-":
       operator = "-";
-      return operator;
-
-    case 111:
+      break;
+    case "/":
       operator = "/";
-      return operator;
-
-    case 106:
+      break;
+    case "x":
+    case "*":
       operator = "*";
-      return operator;
-      default:
+      break;
+    default:
+      break;
     }
 }
 
 function addNumberButton (numberTarget){
   if (replace) {
-      display.textContent = null;
-      replace = false;
+    display.textContent = null;
+    replace = false;
   }
-  if (display.textContent === "0") {
-    display.textContent = numberTarget;
-  } else {
-    display.textContent = (display.textContent + numberTarget);
-  }
+
+  display.textContent === "0" ? display.textContent = numberTarget : display.textContent = (display.textContent + numberTarget);
 }
 
+function add() {
+  result = num1 + num2;
+  display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
+  replace = true;
+  operator = null;
+  num2 = null;
+}
+
+function subtract() {
+  result = num1 - num2;
+  display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
+  replace = true;
+  operator = null;
+  num2 = null;
+}
+
+function multiply() {
+  result = num1 * num2;
+  display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
+  replace = true;
+  operator = null;
+  num2 = null;
+}
+
+function divide() {
+  result = num1 / num2;
+  if (num2 === 0) {
+    alert("Cannot divide by 0! Are you trying to create a black hole?");
+    return;
+  }
+  display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
+  replace = true;
+  operator = null;
+  num2 = null;
+}
 
 function calculate() {
   num2 = parseFloat(display.textContent);
   let result = "";
   switch (operator) {
     case "+":
-      result = num1 + num2;
-      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
-      replace = true;
-      operator = null;
-      num2 = null;
-      return result;
+      add();
+      break;
     case "-":
-      result = num1 - num2;
-      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
-      replace = true;
-      operator = null;
-      num2 = null;
-      return result;
+      subtract();
+      break;
     case "/":
-      result = num1 / num2;
-      if (num2 === 0) {
-        alert("Cannot divide by 0! Are you trying to create a black hole?");
-        return;
-      }
-      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
-      replace = true;
-      operator = null;
-      num2 = null;
-      return result;
+      divide();
+      break;
     case "x":
     case "*":
-      result = num1 * num2;
-      display.textContent = Number.parseFloat(result).toPrecision(10) / 1;
-      replace = true;
-      operator = null;
-      num2 = null;
-      return result;
+      multiply();
+      break;
   }
 }
 
