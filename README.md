@@ -1,16 +1,17 @@
 # Vanilla JavaScript Calculator Application
 
 _Web Based Calculator Written in HTML, CSS, and JavaScript_
+ 
+![CalculatorApp Screen](https://github.com/danielmurphy1/CalculatorApp/blob/master/CalculatorImage.JPG)
+
+Access the app [here](https://danielmurphy1.github.io/CalculatorApp/)
+
+
 
 ## Instructions
 
 
-This calculator contains both on-screen clickable button functionality and keyboard number pad functionality. When using the keyboard functionality, it is important to note that the "enter" key is used for "equals" functionality. In the current build of this application, the "Clear", "Memory Add", "Memory Clear", and "Memory Recall" functionality can only be accessed through the on-screen clickable buttons. 
-
-
-Access the app [here](https://danielmurphy1.github.io/CalculatorApp/)
-
-![CalculatorApp Screen](https://github.com/danielmurphy1/CalculatorApp/blob/master/CalculatorImage.JPG)
+This calculator contains both on-screen clickable button functionality and keyboard number pad functionality. When using the keyboard functionality, it is important to note that the "enter" key is used for "equals" functionality. In the current build of this application, the "Clear", "Memory Add", "Memory Clear", and "Memory Recall" functionality can only be accessed through the on-screen clickable buttons.
 
 ### Summary
 
